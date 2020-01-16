@@ -1,0 +1,33 @@
+application:
+    name: uk-pha-azure-infrastructure_dev
+pipeline:
+  terraform:
+    azure:
+        node: docker-maven-slave
+        defaultBranch: postgresql_revanth
+        subscriptions:
+            nonprod: 
+                credentials:
+                    servicePrincipal: PHA-ServicePrincipal
+            prod:
+                credentials:
+                    servicePrincipal: prod-ServicePrincipal
+        environments:
+            postgresql_revanth:
+              subscription: nonprod
+              prompt: false
+              destroy: false       
+              terraformDirectory: ./terraform_module
+              tfvars:
+                file: pr.tfvars
+              values:
+                resource_group_name: pr_revanth
+                storage_account_name: rand12uyi897widbi
+                location: centralus
+              remoteState:
+                location: centralus
+                resourceGroup: pr_revanth
+                storageAccount: rand12uyi897widbi
+                storageContainer: sampletfstate4591
+                stateFile: sample.tfstate
+
