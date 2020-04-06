@@ -1,0 +1,47 @@
+@Library(['com.optum.jenkins.pipelines.templates.terraform', 'com.optum.jenkins.pipeline.library']) _
+
+  AzurePipeline([
+   preDeploy: { boolean isPullRequest, String environment, Map terraformOutput ->
+    // Run integration tests in PR environments
+    if (isPullRequest) {
+        print("Skipping integration tests (only run in PR environments)")
+    } else {
+        runIntegrationTests(terraformOutput)
+    }
+  }
+])
+
+def runIntegrationTests(Map terraformOutput) {
+
+ node("docker-nodejs-slave") {
+    // Checkout our code from github
+    checkout scm
+ try {
+   stage('Fortifyscan') {
+        glFortifyScan fortifyBuildName: "UKPopHealth_UHGWM110-022675",
+                          //  scarUploadToken:"0421cc65-321f-40d2-acb8-80929126320a",
+                            scarCredentialsId: "pha_migration",
+                            scarProjectVersion:"20910",
+                            scarProjectName:"UKPopHealth_UHGWM110-022675",
+                            criticalThreshold: 3,
+                            highThreshold:1,
+                            mediumThreshold: 10,
+                            lowThreshold: 15,
+                           fortifyTranslateExclusions:"-exclude 'terraform_module/*.tf' -exclude 'terraform_module/*.sh'" ,
+                             uploadToScar: false
+        }
+ }
+   catch (e) {
+          
+        emailext (
+                   subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                     body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                     recipientProviders: [requestor()],
+                     to: 'maniteja.namburi@optum.com'
+                      
+          ) 
+   }
+    
+    
+    }
+     }
