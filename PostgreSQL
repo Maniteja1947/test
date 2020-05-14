@@ -1,0 +1,782 @@
+(function () {
+
+    // Create the connector object
+
+    var myConnector = tableau.makeConnector(); 
+
+    // Define the schema
+    myConnector.getSchema = function (schemaCallback) {
+        var intelligent_popvsspendpppy = [
+            {
+                id: "FinancialYear",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "Cluster",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "segment",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "Practice",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "Finance_Total",
+                dataType: tableau.dataTypeEnum.string
+            }, {
+                id: "Pop",
+                dataType: tableau.dataTypeEnum.string
+            }
+        ];
+
+        var intelligent_popvsspendpppy_schema = {
+            id: "intelligent_popvsspendpppy",
+            alias: "intelligent_popvsspendpppy",
+            columns: intelligent_popvsspendpppy
+        };
+
+        var sankey = [
+        {
+            id: "Segment_1617",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Segment_1718",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "value",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "type",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var sankeyschema = {
+            id: "sankey",
+            alias: "sankey",
+            columns: sankey
+        };
+
+        var macro_summary = [
+        {
+            id: "FinancialYear",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cluster",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "A_SegmentType",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "A_SegmentName",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "B_SegmentType",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "B_SegmentName",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_population",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_population_weighted",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "sum_of_activity_ae",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_apc_el",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_apc_em",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_op",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "sum_of_activity_gp",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_community",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_mentalhealth",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_activity_socialcare",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "sum_of_activity_total",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_ae",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_apc_el",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_apc_em",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "sum_of_finance_op",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_gp",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_community",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_mentalhealth",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "sum_of_finance_socialcare",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_finance_total",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var macro_summary_schema = {
+            id: "macro_summary",
+            alias: "macro_summary",
+            columns: macro_summary
+        };
+
+        var pod = [
+        {
+            id: "FinancialYear",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cluster",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "A_SegmentType",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "A_SegmentName",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "B_SegmentType",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "B_SegmentName",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "AgeBand",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "sum_of_population",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var podschema = {
+            id: "pod",
+            alias: "pod",
+            columns: pod
+        };
+
+        var theograph = [
+        {
+            id: "NHSNumber",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "PoD",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "SuperPoD",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "StartDate",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "EndDate",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spell_LengthOfStay",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "ClinicalDomain",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "ClinicalCategory",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Tariff_Final",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var theographschema = {
+            id: "theograph",
+            alias: "theograph",
+            columns: theograph
+        };
+
+        var intelligent_segmentation = [
+        {
+            id: "financialyear",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "cluster",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Segment",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Population",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Average_Age",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Average_ERGs",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_Acute",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_EL",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_EM",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_NELo",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_AnE",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Outpatients",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "SpendPPPY_Community",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_GP",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_MentalHealth",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_NAC",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_SocialCare",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_Total",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "AsthmaCOPD",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cancer",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cardiology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "ChronicRenalFailure",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Depression",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Dermatology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Diabetes",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Endocrinology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Gastroenterology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "HeartFailure",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Hypertension",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "MentalHealth",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Neurology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Pulmonary",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var intelligent_segmentation_schema = {
+            id: "intelligent_segmentation",
+            alias: "intelligent_segmentation",
+            columns: intelligent_segmentation
+        };
+
+        var intelligent_segmentation_dt = [
+        {
+            id: "financialyear",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "cluster",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Segment",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Population",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Average_Age",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Average_ERGs",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_Acute",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_EL",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_EM",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Inpatient_NELo",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_AnE",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Acute_Outpatients",
+            dataType: tableau.dataTypeEnum.string
+        },{
+            id: "SpendPPPY_Community",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_GP",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_MentalHealth",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_NAC",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_SocialCare",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Spend_PPPY_Total",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "AsthmaCOPD",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cancer",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Cardiology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "ChronicRenalFailure",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Depression",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Dermatology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Diabetes",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Endocrinology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Gastroenterology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "HeartFailure",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Hypertension",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "MentalHealth",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Neurology",
+            dataType: tableau.dataTypeEnum.string
+        }, {
+            id: "Pulmonary",
+            dataType: tableau.dataTypeEnum.string
+        }];
+
+        var intelligent_segmentation_dt_schema = {
+            id: "intelligent_segmentation_dt",
+            alias: "intelligent_segmentation_dt",
+            columns: intelligent_segmentation_dt
+        };
+
+        schemaCallback([intelligent_popvsspendpppy_schema , sankeyschema, macro_summary_schema, podschema, theographschema, intelligent_segmentation_schema,intelligent_segmentation_dt_schema]);
+    };
+
+    // Download the data
+
+    myConnector.getData = function (table, doneCallback) {
+        var dataObj = JSON.parse(tableau.connectionData);
+        if (table.tableInfo.id === "intelligent_popvsspendpppy") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_popvsspendpppy?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_popvsspendpppy"
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                    tableData = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    tableData.push({
+                        "FinancialYear": feat[i].financialyear,
+                        "Cluster": feat[i].cluster,
+                        "segment": feat[i].segment,
+                        "Practice": feat[i].practice,
+                        "Finance_Total": feat[i].finance_total,
+                        "Pop": feat[i].pop
+                    });
+                }
+
+                table.appendRows(tableData);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "sankey") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/sankey?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/sankey";
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                    streamdata = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    streamdata.push({
+                        "Segment_1617": feat[i].segment_1617,
+                        "Segment_1718": feat[i].segment_1718,
+                        "value": feat[i].value,
+                        "type": feat[i].type
+                    });
+                }
+
+                table.appendRows(streamdata);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "macro_summary") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/macro_summary?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/macro_summary"
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                    tableData = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    tableData.push({
+                        "FinancialYear": feat[i].financialyear,
+                        "Cluster": feat[i].cluster,
+                        "A_SegmentType": feat[i].a_segmenttype,
+                        "A_SegmentName": feat[i].a_segmentname,
+                        "B_SegmentType": feat[i].b_segmenttype,
+                        "B_SegmentName": feat[i].b_segmentname,
+                        "sum_of_population": feat[i].sum_of_population,
+                        "sum_of_population_weighted": feat[i].sum_of_population_weighted,
+                        "sum_of_activity_ae": feat[i].sum_of_activity_ae,
+                        "sum_of_activity_apc_el": feat[i].sum_of_activity_apc_el,
+                        "sum_of_activity_apc_em": feat[i].sum_of_activity_apc_em,
+                        "sum_of_activity_op": feat[i].sum_of_activity_op,
+                        "sum_of_activity_gp": feat[i].sum_of_activity_gp,
+                        "sum_of_activity_community": feat[i].sum_of_activity_community,
+                        "sum_of_activity_mentalhealth": feat[i].sum_of_activity_mentalhealth,
+                        "sum_of_activity_socialcare": feat[i].sum_of_activity_socialcare,
+                        "sum_of_activity_total": feat[i].sum_of_activity_total,
+                        "sum_of_finance_ae": feat[i].sum_of_finance_ae,
+                        "sum_of_finance_apc_el": feat[i].sum_of_finance_apc_el,
+                        "sum_of_finance_apc_em": feat[i].sum_of_finance_apc_em,
+                        "sum_of_finance_op": feat[i].sum_of_finance_op,
+                        "sum_of_finance_gp": feat[i].sum_of_finance_gp,
+                        "sum_of_finance_community": feat[i].sum_of_finance_community,
+                        "sum_of_finance_mentalhealth": feat[i].sum_of_finance_mentalhealth,
+                        "sum_of_finance_socialcare": feat[i].sum_of_finance_socialcare,
+                        "sum_of_finance_total": feat[i].sum_of_finance_total
+                    });
+                }
+
+                table.appendRows(tableData);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "pod") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/pod?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/pod";
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                poddata = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    poddata.push({
+                        "FinancialYear": feat[i].financialyear,
+                        "Cluster": feat[i].cluster,
+                        "A_SegmentType": feat[i].a_segmenttype,
+                        "A_SegmentName": feat[i].a_segmentname,
+                        "B_SegmentType": feat[i].b_segmenttype,
+                        "B_SegmentName": feat[i].b_segmentname,
+                        "AgeBand": feat[i].ageband,
+                        "sum_of_population": feat[i].sum_of_population
+                    });
+                }
+
+                table.appendRows(poddata);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "theograph") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/theograph?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/theograph";
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                theographdata = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    theographdata.push({
+                        "NHSNumber": feat[i].nhsnumber,
+                        "PoD": feat[i].pod,
+                        "SuperPoD": feat[i].superpod,
+                        "StartDate": feat[i].startdate,
+                        "EndDate": feat[i].enddate,
+                        "Spell_LengthOfStay": feat[i].spell_lengthofstay,
+                        "ClinicalDomain": feat[i].clinicaldomain,
+                        "ClinicalCategory": feat[i].clinicalcategory,
+                        "Tariff_Final": feat[i].tariff_final
+                    });
+                }
+
+                table.appendRows(theographdata);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "intelligent_segmentation") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_segmentation?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_segmentation"
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                intelligent_segmentation_Data = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    intelligent_segmentation_Data.push({
+                        "financialyear": feat[i].financialyear,
+                        "cluster": feat[i].cluster,
+                        "Segment": feat[i].segment,
+                        "Population": feat[i].population,
+                        "Average_Age": feat[i].average_age,
+                        "Average_ERGs": feat[i].average_ergs,
+                        "Spend_PPPY_Acute": feat[i].spend_pppy_acute,
+                        "Acute_Inpatient_EL": feat[i].acute_inpatient_el,
+                        "Acute_Inpatient_EM": feat[i].acute_inpatient_em,
+                        "Acute_Inpatient_NELo": feat[i].acute_inpatient_nelo,
+                        "Acute_AnE": feat[i].acute_ane,
+                        "Acute_Outpatients": feat[i].acute_outpatients,
+                        "SpendPPPY_Community": feat[i].spendpppy_community,
+                        "Spend_PPPY_GP": feat[i].spend_pppy_gp,
+                        "Spend_PPPY_MentalHealth": feat[i].spend_pppy_mentalhealth,
+                        "Spend_PPPY_NAC": feat[i].spend_pppy_nac,
+                        "Spend_PPPY_SocialCare": feat[i].spend_pppy_socialcare,
+                        "Spend_PPPY_Total": feat[i].spend_pppy_total,
+                        "AsthmaCOPD": feat[i].asthmacopd,
+                        "Cancer": feat[i].cancer,
+                        "Cardiology": feat[i].cardiology,
+                        "ChronicRenalFailure": feat[i].chronicrenalfailure,
+                        "Depression": feat[i].depression,
+                        "Dermatology": feat[i].dermatology,
+                        "Diabetes": feat[i].diabetes,
+                        "Endocrinology": feat[i].endocrinology,
+                        "Gastroenterology": feat[i].gastroenterology,
+                        "HeartFailure": feat[i].heartfailure,
+                        "Hypertension": feat[i].hypertension,
+                        "MentalHealth": feat[i].mentalhealth,
+                        "Neurology": feat[i].neurology,
+                        "Pulmonary": feat[i].pulmonary
+                    });
+                }
+
+                table.appendRows(intelligent_segmentation_Data);
+                doneCallback();
+            });
+        }
+        if (table.tableInfo.id === "intelligent_segmentation_dt") {
+            if (dataObj.tableName === table.tableInfo.id) {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_segmentation_dt?" + dataObj.columnName + "=" + dataObj.operationName + "." + dataObj.columnValue;
+            }
+            else {
+                var url = "https://app-api1-pha-dev.azurewebsites.net/mypgsqldb/client_a/intelligent_segmentation_dt"
+            }
+            $.getJSON(url, function (resp) {
+                var feat = resp,
+                intelligent_segmentation_dt_Data = [];
+                // Iterate over the JSON object
+                for (var i = 0, len = feat.length; i < len; i++) {
+                    intelligent_segmentation_dt_Data.push({
+                        "financialyear": feat[i].financialyear,
+                        "cluster": feat[i].cluster,
+                        "Segment": feat[i].segment,
+                        "Population": feat[i].population,
+                        "Average_Age": feat[i].average_age,
+                        "Average_ERGs": feat[i].average_ergs,
+                        "Spend_PPPY_Acute": feat[i].spend_pppy_acute,
+                        "Acute_Inpatient_EL": feat[i].acute_inpatient_el,
+                        "Acute_Inpatient_EM": feat[i].acute_inpatient_em,
+                        "Acute_Inpatient_NELo": feat[i].acute_inpatient_nelo,
+                        "Acute_AnE": feat[i].acute_ane,
+                        "Acute_Outpatients": feat[i].acute_outpatients,
+                        "SpendPPPY_Community": feat[i].spendpppy_community,
+                        "Spend_PPPY_GP": feat[i].spend_pppy_gp,
+                        "Spend_PPPY_MentalHealth": feat[i].spend_pppy_mentalhealth,
+                        "Spend_PPPY_NAC": feat[i].spend_pppy_nac,
+                        "Spend_PPPY_SocialCare": feat[i].spend_pppy_socialcare,
+                        "Spend_PPPY_Total": feat[i].spend_pppy_total,
+                        "AsthmaCOPD": feat[i].asthmacopd,
+                        "Cancer": feat[i].cancer,
+                        "Cardiology": feat[i].cardiology,
+                        "ChronicRenalFailure": feat[i].chronicrenalfailure,
+                        "Depression": feat[i].depression,
+                        "Dermatology": feat[i].dermatology,
+                        "Diabetes": feat[i].diabetes,
+                        "Endocrinology": feat[i].endocrinology,
+                        "Gastroenterology": feat[i].gastroenterology,
+                        "HeartFailure": feat[i].heartfailure,
+                        "Hypertension": feat[i].hypertension,
+                        "MentalHealth": feat[i].mentalhealth,
+                        "Neurology": feat[i].neurology,
+                        "Pulmonary": feat[i].pulmonary
+                    });
+                }
+
+                table.appendRows(intelligent_segmentation_dt_Data);
+                doneCallback();
+            });
+        }
+    }
+
+    tableau.registerConnector(myConnector);
+
+    // Create event listeners for when the user submits the form
+    $(document).ready(function () {
+        $("#submitButton").click(function () {
+            tableau.connectionName = "Customer";
+            var dataObj = {
+                tableName: $('#tableName').val().trim(),
+                columnName: [''],
+                operationName: [''],
+                columnValue: ['']
+            };
+            dataObj.columnName[0] = $('#columnName').val().trim();
+            dataObj.operationName[0] = $('#operationName').val().trim();
+            dataObj.columnValue[0] = $('#valueColumn').val().trim();
+            console.log(dataObj);
+            for (var i = 1; i < totalColumns; i++) {
+                dataObj.columnName[i] = document.getElementById("adding").children[i].children[1].value;
+                dataObj.operationName[i] = document.getElementById("adding").children[i].children[2].value;
+                dataObj.columnValue[i] = document.getElementById("adding").children[i].children[3].value
+            }
+            if ((dataObj.tableName === '' && dataObj.columnName[0] === '' && dataObj.columnValue[0] === '') || (dataObj.tableName !== '' && dataObj.columnName[0] !== '' && dataObj.columnValue[0] !== '')) {
+                tableau.connectionData = JSON.stringify(dataObj);
+                tableau.connectionName = "Customer"; // This will be the data source name in Tableau
+                tableau.submit(); // This sends the connector object to Tableau
+            }
+            else {
+                $('#errorMsg').html("Select Table,Enter Column name and Column value");
+            }
+            tableau.submit(); 
+        });
+
+        totalColumns = 1;
+
+        $("#addColumn").click(function () {
+            var parent = document.createElement("div");
+            parent.setAttribute("class", "form-inline vertical-center-row");
+            parent.setAttribute("id", totalColumns + "div");
+            parent.setAttribute("style", "margin-top:20px;");
+            var andelement = document.createElement("span");
+            andelement.setAttribute("id", "h6tag");
+            andelement.setAttribute("style", "margin-right:20px;");
+            parent.append(andelement)
+            var element = document.createElement("input");
+            element.setAttribute("type", "text");
+            element.setAttribute("id", totalColumns + 'column');
+            element.setAttribute("class", "form-control");
+            element.setAttribute("name", "columnName");
+            element.setAttribute("placeholder", "Enter Column");
+            element.setAttribute("style", "margin-right:10px;")
+            parent.appendChild(element);
+            var element2 = document.createElement("select");
+            element2.setAttribute("id", totalColumns + "operationName");
+            element2.setAttribute("style", "margin-right:10px;")
+            element2.setAttribute("class", "form-control");
+            var option = document.createElement("option");
+            option.setAttribute("value", "");
+            option.setAttribute("id", totalColumns + "none");
+            var option1 = document.createElement("option");
+            option1.setAttribute("value", "$eq");
+            option1.setAttribute("id", totalColumns + "equal");
+            var option2 = document.createElement("option");
+            option2.setAttribute("value", "$gt");
+            option2.setAttribute("id", totalColumns + "greater");
+            var option3 = document.createElement("option");
+            option3.setAttribute("value", "$ls");
+            option3.setAttribute("id", totalColumns + "lesser");
+            element2.appendChild(option);
+            element2.appendChild(option1);
+            element2.appendChild(option2);
+            element2.appendChild(option3);
+            parent.appendChild(element2);
+            var element3 = document.createElement("input");
+            element3.setAttribute("type", "text");
+            element3.setAttribute("id", totalColumns + 'value');
+            element3.setAttribute("class", "form-control");
+            element3.setAttribute("name", "columnValue");
+            element3.setAttribute("placeholder", "Enter Value");
+            element3.setAttribute("style", "margin-right:10px;")
+            parent.appendChild(element3);
+            var grandparent = document.getElementById("adding");
+            grandparent.appendChild(parent);
+            document.getElementById(totalColumns + "none").innerHTML = "Select Operation";
+            document.getElementById(totalColumns + "equal").innerHTML = "Equal";
+            document.getElementById(totalColumns + "greater").innerHTML = "Greater Than";
+            document.getElementById(totalColumns + "lesser").innerHTML = "Less Than";
+            document.getElementById("h6tag").innerHTML = "and";
+            totalColumns = totalColumns + 1;
+        });
+    });
+    var totalColumns;
+
+})();
