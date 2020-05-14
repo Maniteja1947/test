@@ -1,0 +1,45 @@
+apiVersion: v1
+metadata:
+    askId: UKPopHealth_UHGWM110-022675
+    caAgileId: UKPopHealth_UHGWM110-022675
+    projectKey: com.optum.pha:rest_api
+    projectFriendlyName: pha_rest_api
+    componentType: code
+    targetQG: GATE_00  
+
+
+#application:
+#  name: uk-pha-azure-infrastructure_dev
+#pipeline:
+ # terraform:
+ #   azure:
+ #     node: docker-maven-slave
+ #     defaultBranch: wdc_demo
+ #     subscriptions:
+ #         nonprod: 
+ #             credentials:
+  #                servicePrincipal: PHA-ServicePrincipal
+  #        prod:
+ #             credentials:
+ #                 servicePrincipal: prod-ServicePrincipal
+ #         bdpass:
+ #             credentials:
+ #                 servicePrincipal: BDPASS-ServicePrincipal
+ #     environments:
+  #      wdc_demo:
+  #        subscription: nonprod
+  #        prompt: false
+  #        destroy: false       
+  #        terraformDirectory: ./terraform_module
+  #        tfvars:
+  #          file: demo.tfvars
+  #        values:
+  #          resource_group_name: rg-pha-demo
+  #          storage_account_name: dlsstatedemo
+  #          location: centralus
+  #        remoteState:
+   #         location: centralus
+  #          resourceGroup: rg-pha-demo
+   #         storageAccount: dlsstatedemo
+   #         storageContainer: wdcstates
+  #          stateFile: wdc.tfstat
