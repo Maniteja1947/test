@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+login_server=$1
+registry_name=$2
+registry_password=$3
+image_name=$4
+tag_name=$5
+application_name=$6
+subscription_id=$7
+
+id="$(cut -d'/' -f3 <<<"$subscription_id")"
+az account set --subscription $id
+
+docker build --pull -t $image_name:$tag_name $application_name
+az acr login --name $registry_name --subscription $id
+docker tag $image_name:$tag_name $login_server/$image_name:$tag_name
+docker push $login_server/$image_name:$tag_name
